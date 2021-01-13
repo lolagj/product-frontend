@@ -1,3 +1,5 @@
+import Product from './Produc.js';
+
 function Products (props){
     return(
         <table className="table">
@@ -9,7 +11,9 @@ function Products (props){
                 </tr>
             </thead>
             <tbody>
-                
+                {props.products.map((product)=>
+                    <Product key={Product.name} product={product}/>
+                )}
             </tbody>
         </table>
     )
