@@ -1,8 +1,23 @@
-import Product from './Produc.js';
+//import { Alert } from 'bootstrap';
+import { Fragment, useState } from 'react';
+import Product from './Product.js';
+import Alert from './Alert.js';
+
 
 function Products (props){
+    const [message, setMessage] =useState(null);
+    function onAlertClose(){
+        setMessage(null);
+    }
+
+    function onProductEdit(product) {
+        setMessage(product.name);
+        
+    }
     return(
-        <table className="table">
+        <Fragment>
+            <Alert message={message} onClose={onAlertClose}/>
+            <table className="table">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -12,10 +27,13 @@ function Products (props){
             </thead>
             <tbody>
                 {props.products.map((product)=>
-                    <Product key={Product.name} product={product}/>
+                    <Product key={Product.name} product={product} onEdit={onProductEdit}/>
                 )}
             </tbody>
-        </table>
+            </table>
+
+        </Fragment>
+        
     )
 }
 
