@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import Products from './Products.js'
 
 function App() {
+  const c=[{
+    name: "mascarilla",
+    description:"Producto"
+  },
+  {
+    name: "gel hidroalcoholico",
+    description:"Producto"
+  }
+
+]
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload . We've done it
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Product Catalogue</h1>
+      <Products products ={c}/>
     </div>
   );
 }
