@@ -1,13 +1,30 @@
 //import { Alert } from 'bootstrap';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Alert from './Alert.js';
 import NewProduct from './NewProduct.js';
 import EditableProduct from './EditableProduct.js';
+import ProductsApi from './ProductsApi.js';
+
 
 function Products (props){
     const [message, setMessage] =useState(null);
-    const [products, setProducts]= useState(props.products);
+    const [products, setProducts]= useState([]);
     
+    useEffect(()=>{
+        async function fetchProducts(){
+            try{
+                const p = await ProductsApi.getAllProducts();
+                
+                setProducts(p);
+                
+            }catch(error){
+                
+                setMessage('Could not contact with the server'+ error);
+            }            
+        }
+        fetchProducts();
+    }, []);
+
     function onAlertClose(){
         setMessage(null);
     }
@@ -71,6 +88,8 @@ function Products (props){
         return true;
         
     }
+
+
     return(
         <Fragment>
             <Alert message={message} onClose={onAlertClose}/>
