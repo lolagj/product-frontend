@@ -1,22 +1,15 @@
 import './App.css';
 import Products from './Products.js'
 
-function App() {
-  const c=[{
-    name: "mascarilla",
-    description:"Producto"
-  },
-  {
-    name: "gel hidroalcoholico",
-    description:"Producto"
-  }
 
-]
+function App() {
+ 
 
   return (
     <div className="App">
       <h1>Product Catalogue</h1>
-      <Products products ={c}/>
+      
+      <Products/>
     </div>
   );
 }
