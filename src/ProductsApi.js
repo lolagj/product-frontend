@@ -27,7 +27,7 @@ class ProductsApi{
     }
 
     static async deleteById(value){
-        axios.delete(ProductsApi.API_BASE_URL + "providers"+ value,
+        axios.delete(ProductsApi.API_BASE_URL + "products"+ value,
         {headers:{
             apikey: '71c379b0-ca56-4477-a5b8-f9296e5691a0'
         }}).then(res=>{
@@ -39,7 +39,7 @@ class ProductsApi{
     }
 
     static async postProduct(value){
-        axios.post(ProductsApi.API_BASE_URL + "providers", value,
+        axios.post(ProductsApi.API_BASE_URL + "products", value,
         {headers:{
             apikey: '71c379b0-ca56-4477-a5b8-f9296e5691a0'
         }}).then(res=>{
