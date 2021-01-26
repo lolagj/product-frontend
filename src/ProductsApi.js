@@ -12,7 +12,7 @@ class ProductsApi{
             method: 'GET',
             headers: {
                 headers,
-                apikey: '7144308f-364a-4f26-b480-c72f02ff23a7'
+                apikey: process.env.BACKEND
             }
         });
 
