@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+    - 9
+install:
+  - npm install
+script:
+  - npm test
+  - npm run build
+
+deploy:
+  provider: heroku
+  skip_cleanup: true
+  app: $HEROKU_APP_NAME
+  api_key: $HEROKU_API_KEY
+  on:
+    branch: main
