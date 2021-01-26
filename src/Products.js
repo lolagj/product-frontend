@@ -97,7 +97,13 @@ function Products (props){
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Code</th>
                     <th>Description</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                    <th>Provider Name</th>
+                    <th>Provider CIF</th>
                     <th>&nbsp;</th>
                 </tr>
             </thead>

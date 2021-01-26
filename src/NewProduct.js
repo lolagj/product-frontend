@@ -41,7 +41,7 @@ function NewProduct(props) {
     }
     return(
         <tr>
-
+            
             <td><input className="form-control" name="code" value={code} onChange= {(event)=>setCode(event.target.value)}/></td>
             <td><input className="form-control" name="name" value={name} onChange= {(event)=>setName(event.target.value)}/></td>
             <td><input className="form-control" name="description" value={description} onChange= {(event)=>setDescription(event.target.value)}/></td>
