@@ -30,18 +30,18 @@ function Products (props){
     }
 
     function onProductEdit(newProduct, oldProduct) {
-        const validation=validateProductName(newProduct);
+        const validation=validateProductCode(newProduct);
         if(!validation){
             return false;
         }
         
-        if(newProduct.name !==oldProduct.name){
-            setMessage('Cannot change the name');
+        if(newProduct.code !==oldProduct.code){
+            setMessage('Cannot change the code');
             return false;
         }
 
         setProducts((prevProducts)=>{
-            const newProducts= prevProducts.map((c)=> c.name=== oldProduct.name ? newProduct : c);            
+            const newProducts= prevProducts.map((c)=> c.code=== oldProduct.code ? newProduct : c);            
             return newProducts;
         })
         
@@ -50,13 +50,13 @@ function Products (props){
 
     function onProductDelete(product){
         setProducts((prevProducts)=>{
-            return prevProducts.filter((c)=>c.name !== product.name);
+            return prevProducts.filter((c)=>c.code !== product.code);
         });
     }
 
-    function validateProductName(product){
-        if(product.name===''){
-            setMessage('You have to introduce the name of the product');
+    function validateProductCode(product){
+        if(product.code===''){
+            setMessage('You have to introduce the code of the product');
             return false;
 
         }
@@ -65,17 +65,17 @@ function Products (props){
 
     function onAddProduct(product) {
         
-        const validation= validateProductName(product);
+        const validation= validateProductCode(product);
         if(!validation){
             return false;
         } 
-        if(products.find(c=> c.name=== product.name)){
+        if(products.find(c=> c.code=== product.code)){
             setMessage('Duplicated product');
             return false;
         }     
 
         setProducts((prevProducts)=>{
-            if(!prevProducts.find(c=>c.name ===product.name)){
+            if(!prevProducts.find(c=>c.code ===product.code)){
                 return [...prevProducts, product]; //De esta forma cogemos la lista y añadimos el nuevo producto
 
             }else{
@@ -105,7 +105,7 @@ function Products (props){
 
                 <NewProduct onAddProduct={onAddProduct}/>
                 {products.map((product)=>
-                    <EditableProduct key={product.name} product={product} onEdit={(newProduct)=>onProductEdit(newProduct, product)} onDelete={onProductDelete}/>
+                    <EditableProduct key={product.code} product={product} onEdit={(newProduct)=>onProductEdit(newProduct, product)} onDelete={onProductDelete}/>
                 )}
             </tbody>
             </table>
