@@ -76,6 +76,7 @@ function Products (props){
 
         setProducts((prevProducts)=>{
             if(!prevProducts.find(c=>c.code ===product.code)){
+                
                 return [...prevProducts, product]; //De esta forma cogemos la lista y añadimos el nuevo producto
 
             }else{
