@@ -1,18 +1,24 @@
-function Alert({message, onClose}){
-    if(message==null){
+import React from 'react';
+import PropTypes from 'prop-types';
+
+function Alert(props) {
+    if (props.message == null) {
         return null;
     }
-    return(
-        <div className="alert alert-warning alert-dismissable">
-            <strong>Error!</strong> {message}
-            <button type="button" className="close" onClick={()=> onClose()}>
-                <span>&times;</span>
+
+    return (
+        <div className="alert alert-warning alert-dismissible" role="alert">
+            <strong>Error!</strong> {props.message}
+            <button data-testid="close" type="button" className="close" onClick={() => props.onClose()}>
+                <span aria-hidden="true">&times;</span>
             </button>
         </div>
-    )
-
-    
-
+    );
 }
 
-export default Alert; 
+Alert.propTypes = {
+    message: PropTypes.string,
+    onClose: PropTypes.func.isRequired
+}
+
+export default Alert
