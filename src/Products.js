@@ -32,20 +32,7 @@ function Products (props){
         setSearchName(searchName);
     }
 
-    function findByName() {
-        async function findProduct(){
-            try{
-                const p = await ProductsApi.getProductByName(searchName);
-                
-                setProducts(p);
-                
-            }catch(error){
-                
-                setMessage('Could not contact with the server'+ error);
-            }            
-        }
-        findProduct();
-    }
+  
 
     function onAlertClose(){
         setMessage(null);
@@ -158,6 +145,20 @@ function Products (props){
         
     }
 
+    function findByName() {
+        async function findProduct(){
+            try{
+                const aux = await ProductsApi.getProductByName(searchName);
+                
+                setProducts(aux);
+                
+            }catch(error){
+                
+                setMessage('Could not contact with the server'+ error);
+            }            
+        }
+        findProduct();
+    }
 
     return(
      
@@ -187,7 +188,7 @@ function Products (props){
                     </div>
                 </div>
             </div>
-            
+
             <Alert message={message} onClose={onAlertClose}/>
             <table className="table">
             <thead>

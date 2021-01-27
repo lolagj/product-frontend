@@ -6,6 +6,44 @@ class ProductsApi{
         return {}
     }
 
+    static async getProductByName(value){
+        const headers= this.requestHeaders();
+        const request= new Request(ProductsApi.API_BASE_URL+"/product?search="+value,{
+            method: 'GET',
+            headers: {
+                headers,
+                apikey: process.env.BACKEND || "7144308f-364a-4f26-b480-c72f02ff23a7"
+                
+            }
+        });
+
+        const response = await fetch(request); 
+
+        if(! response.ok){
+            throw Error("Response not valid"+ response.status);
+        }
+    
+        return response.json();
+
+
+    }
+/*
+    static async getProductByName(value){
+        axios.get(ProductsApi.API_BASE_URL+"/product?search="+value,
+        {headers:{
+            apikey: process.env.BACKEND || "7144308f-364a-4f26-b480-c72f02ff23a7"
+            
+        }}
+        
+        ).then(res=>{
+            return res.json; 
+        }).cath(error=>{
+            console.error(error)
+            throw Error("Response not valid"+ error);
+        })
+        
+    }*/
+
     static async getAllProducts(){
         const headers= this.requestHeaders();
         const request= new Request(ProductsApi.API_BASE_URL+"/products",{
@@ -25,49 +63,7 @@ class ProductsApi{
         return response.json();
 
     }
-    static async getProductByName(value){
-        const headers= this.requestHeaders();
-        const request= new Request(ProductsApi.API_BASE_URL+"/products?search="+value,{
-            method: 'GET',
-            headers: {
-                headers,
-                apikey: process.env.BACKEND || "7144308f-364a-4f26-b480-c72f02ff23a7"
-            }
-        });
-
-        const response = await fetch(request); 
-
-        if(! response.ok){
-            throw Error("Response not valid"+ response.status);
-        }
-    
-        return response.json();
-
-
-    }
-
-    /*
-    static async postProduct(value){
-        const headers= this.requestHeaders();
-        const request= new Request(ProductsApi.API_BASE_URL+"/products",{
-            method: 'POST',
-            headers: {
-                headers,
-                apikey: process.env.BACKEND || "7144308f-364a-4f26-b480-c72f02ff23a7",
-                body: value
-            }
-        });
-
-        const response = await fetch(request); 
-
-        if(! response.ok){
-            throw Error("Response not valid"+ response.status);
-        }
-        
-        console.log(response)
-        return response;
-
-    }*/
+ 
 
     static async deleteById(value){
         axios.delete(ProductsApi.API_BASE_URL + "/products/"+ value,
