@@ -25,6 +25,26 @@ class ProductsApi{
         return response.json();
 
     }
+    static async getProductByName(value){
+        const headers= this.requestHeaders();
+        const request= new Request(ProductsApi.API_BASE_URL+"/products?search="+value,{
+            method: 'GET',
+            headers: {
+                headers,
+                apikey: process.env.BACKEND || "7144308f-364a-4f26-b480-c72f02ff23a7"
+            }
+        });
+
+        const response = await fetch(request); 
+
+        if(! response.ok){
+            throw Error("Response not valid"+ response.status);
+        }
+    
+        return response.json();
+
+
+    }
 
     /*
     static async postProduct(value){
@@ -74,17 +94,7 @@ class ProductsApi{
         });
     }
 
-    static async getProductByName(value){
-        axios.get(ProductsApi.API_BASE_URL+"/products?search="+value,
-        {headers:{
-            apikey:  process.env.BACKEND || "7144308f-364a-4f26-b480-c72f02ff23a7"
-        }}).then(res=>{
-            return res.data.json;
-        }).cath(error=>{
-            console.error(error)
-            throw Error("Response not valid"+ error);
-        });
-    }
+
 
     static async getProductByCategory(value){
         axios.get(ProductsApi.API_BASE_URL+"products?category="+value,
