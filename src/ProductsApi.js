@@ -22,8 +22,6 @@ class ProductsApi{
         if(! response.ok){
             throw Error("Response not valid "+ response.status);
         }
-
-        console.log(response.json())
     
         return response.json();
 
@@ -68,7 +66,10 @@ class ProductsApi{
         if(! response.ok){
             throw Error("Response not valid "+ response.status);
         }
-    
+
+        console.log(response)
+        console.log(response.json())
+
         return response.json();
 
     }
