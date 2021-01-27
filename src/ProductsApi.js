@@ -60,7 +60,8 @@ class ProductsApi{
             throw Error("Response not valid "+ response.status);
         }
     
-        return response.json();
+        return response;
+        // return response.json();
 
     }
  
