@@ -1,6 +1,7 @@
 const axios= require('axios').default;
 class ProductsApi{
-    static API_BASE_URL="https://fis-lola-giuliano.herokuapp.com/api/v1";
+    // static API_BASE_URL="https://fis-lola-giuliano.herokuapp.com/api/v1";
+    static API_BASE_URL="/api/v1";
 
     static requestHeaders(){
         return {}
