@@ -9,7 +9,8 @@ import ProductsApi from './ProductsApi.js';
 function Products (props){
     const [message, setMessage] =useState(null);
     const [products, setProducts]= useState([]);
-    
+    const[searchName, setSearchName]=useState("");
+
     useEffect(()=>{
         async function fetchProducts(){
             try{
@@ -24,6 +25,14 @@ function Products (props){
         }
         fetchProducts();
     }, []);
+
+
+    function onChangeSearchName(e) {
+        const searchName=e.target.value;
+        setSearchName(searchName);
+    }
+
+  
 
     function onAlertClose(){
         setMessage(null);
@@ -40,7 +49,25 @@ function Products (props){
             return false;
         }
 
+        async function editProducts(){
+            try{
+                
+                await ProductsApi.updateProduct(oldProduct.code, newProduct);
+                
+                
+                
+            }catch(error){
+                
+                setMessage('Could not contact with the server'+ error);
+            }            
+        }
+        editProducts();
+
+        
         setProducts((prevProducts)=>{
+
+
+
             const newProducts= prevProducts.map((c)=> c.code=== oldProduct.code ? newProduct : c);            
             return newProducts;
         })
@@ -49,6 +76,19 @@ function Products (props){
     }
 
     function onProductDelete(product){
+
+        async function deleteProduct() {
+            try {
+                await ProductsApi.deleteById(product.code); 
+
+            } catch(error) {
+                console.log(error)
+                //setMessage('Could not connect with the server');
+            }
+        }
+        deleteProduct();
+
+
         setProducts((prevProducts)=>{
             return prevProducts.filter((c)=>c.code !== product.code);
         });
@@ -74,6 +114,21 @@ function Products (props){
             return false;
         }     
 
+
+        async function addProduct() {
+            try {
+                await ProductsApi.postProduct(product);
+
+            } catch(error) {
+                console.log(error)
+                //setMessage('Could not connect with the server');
+            }
+        }
+        addProduct();
+
+
+        
+        
         setProducts((prevProducts)=>{
             if(!prevProducts.find(c=>c.code ===product.code)){
                 
@@ -90,15 +145,59 @@ function Products (props){
         
     }
 
+    function findByName() {
+        async function findProduct(){
+            try{
+                const aux = await ProductsApi.getProductByName(searchName);
+                
+                setProducts(aux);
+                
+            }catch(error){
+                
+                setMessage('Could not contact with the server'+ error);
+            }            
+        }
+        findProduct();
+    }
 
     return(
+     
+        
+
+
+
         <Fragment>
+            
+            <div className="col-md-8">
+                <div className="input-group mb-3">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Search by Name"
+                        value={searchName}
+                        onChange={onChangeSearchName}
+                    />
+                    <div className="input-group-append">
+                        <button
+                            className="btn btn-outline-secondary"
+                            type="button"
+                            onClick={findByName}
+                        >
+                        Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <Alert message={message} onClose={onAlertClose}/>
             <table className="table">
             <thead>
                 <tr>
-                    <th>Name</th>
+
+
                     <th>Code</th>
+                    <th>Name</th>
+                    
                     <th>Description</th>
                     <th>Category</th>
                     <th>Price</th>
