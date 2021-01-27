@@ -9,7 +9,7 @@ import ProductsApi from './ProductsApi.js';
 function Products (props){
     const [message, setMessage] =useState(null);
     const [products, setProducts]= useState([]);
-    const[searchName, setSearchName]=useState("");
+    // const[searchName, setSearchName]=useState("");
 
     useEffect(()=>{
         async function fetchProducts(){
@@ -27,12 +27,10 @@ function Products (props){
     }, []);
 
 
-    function onChangeSearchName(e) {
-        const searchName=e.target.value;
-        setSearchName(searchName);
-    }
-
-  
+    // function onChangeSearchName(e) {
+    //     const searchName=e.target.value;
+    //     setSearchName(searchName);
+    // }
 
     function onAlertClose(){
         setMessage(null);
@@ -145,20 +143,20 @@ function Products (props){
         
     }
 
-    function findByName() {
-        async function findProduct(){
-            try{
-                const aux = await ProductsApi.getProductByName(searchName);
+    // function findByName() {
+    //     async function findProduct(){
+    //         try{
+    //             const aux = await ProductsApi.getProductByName(searchName);
                 
-                setProducts(aux);
+    //             setProducts(aux);
                 
-            }catch(error){
+    //         }catch(error){
                 
-                setMessage('Could not contact with the server'+ error);
-            }            
-        }
-        findProduct();
-    }
+    //             setMessage('Could not contact with the server'+ error);
+    //         }            
+    //     }
+    //     findProduct();
+    // }
 
     return(
      
@@ -168,7 +166,7 @@ function Products (props){
 
         <Fragment>
             
-            <div className="col-md-8">
+            {/* <div className="col-md-8">
                 <div className="input-group mb-3">
                     <input
                         type="text"
@@ -187,7 +185,7 @@ function Products (props){
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <Alert message={message} onClose={onAlertClose}/>
             <table className="table">

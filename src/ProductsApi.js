@@ -19,7 +19,7 @@ class ProductsApi{
         const response = await fetch(request); 
 
         if(! response.ok){
-            throw Error("Response not valid"+ response.status);
+            throw Error("Response not valid "+ response.status);
         }
     
         return response.json();
@@ -51,6 +51,7 @@ class ProductsApi{
 
     static async getAllProducts(){
         const headers= this.requestHeaders();
+        console.log(ProductsApi.API_BASE_URL+"/products")
         const request= new Request(ProductsApi.API_BASE_URL+"/products",{
             method: 'GET',
             headers: {
@@ -78,7 +79,7 @@ class ProductsApi{
             return res;
         }).cath(error=>{
             console.error(error)
-            throw Error("Response not valid"+ error);
+            throw Error("Response not valid "+ error);
         })
     }
 
@@ -91,7 +92,7 @@ class ProductsApi{
             return res.data;
         }).cath(error=>{
             console.error(error)
-            throw Error("Response not valid"+ error);
+            throw Error("Response not valid "+ error);
         });
     }
 

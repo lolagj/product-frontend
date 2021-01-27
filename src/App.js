@@ -1,13 +1,13 @@
 
 import './App.css';
-import Products from './Products.js'
+import Products from './Products'
 
 
 function App() {
  
  
     return (
-      <div className="Shopid">
+      <div className="App">
         
         <h1>Product Catalogue</h1>
   
