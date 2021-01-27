@@ -24,9 +24,8 @@ class ProductsApi{
         }
     
         return response.json();
-
-        
     }
+
     /*
     static async getProductByName(value){
         axios.get(ProductsApi.API_BASE_URL+"/product?search="+value,
@@ -41,13 +40,7 @@ class ProductsApi{
             console.error(error)
             throw Error("Response not valid"+ error);
         })
-        
-
-
         // apikey: process.env.API_KEY || "7144308f-364a-4f26-b480-c72f02ff23a7"
-
-
-
     }*/
 
     static async getAllProducts(){
@@ -66,8 +59,6 @@ class ProductsApi{
         if(! response.ok){
             throw Error("Response not valid "+ response.status);
         }
-
-        console.log(response.json())
 
         return response.json();
 
@@ -123,9 +114,7 @@ class ProductsApi{
             console.error(error)
             throw Error("Response not valid"+ error);
         });
-}
-    
-
+    }
 }
 
 export default ProductsApi;
