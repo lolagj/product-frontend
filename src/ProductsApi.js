@@ -57,7 +57,7 @@ class ProductsApi{
         const response = await fetch(request); 
 
         if(! response.ok){
-            throw Error("Response not valid"+ response.status);
+            throw Error("Response not valid "+ response.status);
         }
     
         return response.json();

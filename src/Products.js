@@ -20,7 +20,7 @@ function Products (props){
                 
             }catch(error){
                 
-                setMessage('Could not contact with the server'+ error);
+                setMessage('Could not contact with the server. '+ error);
             }            
         }
         fetchProducts();
